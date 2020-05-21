@@ -1,0 +1,19 @@
+// If need, change your variables before importing Bulma
+$family-sans-serif: 'Open Sans', sans-serif;
+
+$text: hsl(0, 0%, 71%);
+$text-invert: hsl(0, 0%, 29%);
+
+$strong-color: #fff;
+
+$radius: 6px;
+
+$link: #fff;
+$link-invert: hsl(0, 0%, 71%);
+$link-hover: $link-invert;
+
+$button-hover-color: $text-invert;
+
+$card-background-color: hsl(0, 0%, 14%);
+
+$gap: 8px;

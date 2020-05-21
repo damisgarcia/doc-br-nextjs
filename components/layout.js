@@ -6,11 +6,10 @@
  */
 
 import React from "react"
-import styled from "styled-components"
 import Head from 'next/head'
 import Header from "./header"
 
-const Layout = ({ children }) => {
+  const Layout = ({ children }) => {
   return (
     <>
       <Head>
@@ -18,7 +17,7 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Container>
+      <div className="container">
         <main>
           {children}
         </main>
@@ -31,15 +30,9 @@ const Layout = ({ children }) => {
             Damis Garcia
           </a>
         </footer>
-      </Container>
+      </div>
     </>
   )
 }
-
-const Container = styled.div`
-  max-width: 960px;
-  padding: 0 1.0875rem 1.45rem;
-  margin: 0 auto;
-`
 
 export default Layout

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
 import posed from 'react-pose'
 
+import { StrapiGetMedia } from '../utils/strapi/assets'
+
 const FadeBottomPose = posed.div({
     enter: {
         opacity: 1,
@@ -19,26 +21,27 @@ const FadeBottomPose = posed.div({
     }
 })
 
-function HomeLayout({ data, children }) {
+function HomeLayout({ site, children }) {
     const [isDone, setDone] = useState(false)
 
     useEffect(() => {        
         function startHome() {
             // Play video
             const video = document.getElementById('video')
-            video.onloadeddata = () => {
-                video.play()
+                        
+            video.addEventListener('play', () => {
                 // Done Page
                 setDone(true)
-            }
+            })
+
+            video.play()
         }
 
         startHome()
     }, [])
-
-
+    
     return (
-        <>
+        <div className="video-canvas">
             <CanvasWrap>
                 <CanvasContent>
                     <CanvasTitleGroup 
@@ -55,10 +58,11 @@ function HomeLayout({ data, children }) {
                     id="video" 
                     allow="autoplay"
                     loop={true}
+                    preload="metadata"
                     muted
                 >
                     <source
-                        src={data.strapiSite.PresentationVideo.publicURL}
+                        src={StrapiGetMedia(site?.PresentationVideo?.url)}
                         type="video/mp4"
                     />
                 </Video>
@@ -89,12 +93,12 @@ function HomeLayout({ data, children }) {
                     </div>
                 </CanvasCard>
             </CanvasWrap>
-            <Container>
+            <div className="container">
                 <main>
                     { children }
                 </main>
-            </Container>
-        </>
+            </div>
+        </div>
     )
 }
 
