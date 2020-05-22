@@ -2,12 +2,33 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap');
 
+@import "./mixins.scss";
 @import "./variables.scss";
 
 @import "~bulma/bulma.sass";
+@import "~aos/dist/aos.css";
 
 body {
     background-color: $black-bis;
+}
+
+// Layout
+p{
+    margin-bottom: 1.5rem;
+}
+
+.site-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 75vh;
+    .column {
+        padding: 0px 64px;
+    }
+    .title {
+        @include bebas_neue;
+        color: #fff;
+    }
 }
 
 .video-canvas {
@@ -24,12 +45,71 @@ body {
 
 .album-gallery {
     .album {
-        margin: $gap * 2;
-        &:hover {
+        margin: 0.75rem;
+        .image:hover {
             cursor: pointer;
+            img {
+                opacity: 1;
+                filter: grayscale(0%);
+            }
         }
         &-title {
             margin-bottom: $gap * 2;
+        }
+        .column {
+            padding: 0px;
         } 
+        img {
+            opacity: 0.5;
+            filter: grayscale(75%);
+            transition: all 1s;
+        }
+    }
+}
+
+
+.more-posts {
+    padding: 10rem 0px 64px;
+    .box {
+        background-color: #242424;
+        border-radius: $gap * 2;
+        .title {
+            @include bebas_neue;
+            color: #ddd;
+            width: 100%;
+            text-align: center;           
+            padding: 24px 0px;
+        }
+    }
+}
+
+.article {
+    height: 100%;
+    .card {
+        height: 100%;
+        &-header{
+            &-title {
+                color: #eee !important;
+            }
+        }
+        p {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+// Themes
+section {
+    b, strong {
+        color: #eee !important;
+    }
+}
+
+// Cards
+.card {
+    display: flex;
+    flex-direction: column;
+    &-content {
+        flex: 1;
     }
 }

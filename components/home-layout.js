@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import AOS from 'aos';
 import styled from "styled-components"
 import posed from 'react-pose'
 
@@ -35,6 +36,9 @@ function HomeLayout({ site, children }) {
             })
 
             video.play()
+
+            // Iniciando transições de página
+            AOS.init()
         }
 
         startHome()
@@ -51,7 +55,7 @@ function HomeLayout({ site, children }) {
                     >
                         <CanvasTitle>DOC-BR</CanvasTitle>
                         <CanvasSubtitle>Mollit nulla deserunt minim minim Lorem adipisicing anim.</CanvasSubtitle>
-                        <button className="button is-medium">Decubra mais sobre a Amazônia</button>
+                        <button className="button is-medium">Veja mais</button>
                     </CanvasTitleGroup>
                 </CanvasContent>
                 <Video 
@@ -93,11 +97,9 @@ function HomeLayout({ site, children }) {
                     </div>
                 </CanvasCard>
             </CanvasWrap>
-            <div className="container">
-                <main>
-                    { children }
-                </main>
-            </div>
+            <main>
+                { children }
+            </main>
         </div>
     )
 }

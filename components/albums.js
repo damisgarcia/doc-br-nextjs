@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Viewer from 'react-viewer'
 import { StrapiGetMedia } from '../utils/strapi/assets'
+
+import AOS from 'aos';
 
 function Albums({ albums }) {
     const [list, setList] = useState([...albums])
@@ -12,6 +14,10 @@ function Albums({ albums }) {
         setList(newList)
     }
 
+    useEffect(() => {
+        AOS.init()
+    }, [])
+
     if (!albums?.length) {
         return null
     }
@@ -19,13 +25,18 @@ function Albums({ albums }) {
     return albums.map((album, albumIndex) => {
         return (
             <li className="album" key={album.id}>
-                <div className="album-title">
-                    {album.title}
-                </div>
                 <div className="columns">
                     {album.images.map((pic, picIndex) => (
-                        <div key={pic.id} className="column is-4">
-                            <figure className="image is-4by3" onClick={() => toggleGallery(album.visible, albumIndex, picIndex)}>
+                        <div 
+                            key={pic.id} 
+                            className="column is-4"                             
+                            >
+                            <figure 
+                                className="image is-4by3" 
+                                data-aos="fade-up"
+                                data-aos-delay={200 * (picIndex + 1)}
+                                onClick={() => toggleGallery(album.visible, albumIndex, picIndex)}
+                            >
                                 <img
                                     className="image"
                                     src={StrapiGetMedia(pic?.formats?.small?.url)}
