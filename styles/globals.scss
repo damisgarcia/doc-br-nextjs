@@ -113,3 +113,17 @@ section {
         flex: 1;
     }
 }
+
+
+// Footer
+.site-footer{
+    .columns {
+        align-items: flex-end;
+    }
+}
+.site-social-media {
+    justify-content: flex-end;
+    li {
+        margin: 0px 8px;
+    }
+}

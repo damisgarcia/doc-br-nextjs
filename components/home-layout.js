@@ -5,6 +5,8 @@ import posed from 'react-pose'
 
 import { StrapiGetMedia } from '../utils/strapi/assets'
 
+import Footer from '../components/footer'
+
 const FadeBottomPose = posed.div({
     enter: {
         opacity: 1,
@@ -100,6 +102,7 @@ function HomeLayout({ site, children }) {
             <main>
                 { children }
             </main>
+            <Footer />
         </div>
     )
 }
